@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Product from "./pages/Product";
@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import CountriesList from "./components/CountriesList";
 import City from "./components/City";
+import Form from "./components/Form";
 
 /// Ce Component ce charge de montrer quel component apparait a l'ecran
 // selon le changement des Routes.
@@ -51,10 +52,7 @@ export default function App() {
 
           <Route path="App" element={<AppLayout />}>
             {/* CityList */}
-            <Route
-              index
-              element={<CityList cities={cities} isloading={isLoading} />}
-            />
+            <Route index element={<Navigate replace to="cities" />} />
             <Route
               path="cities"
               element={<CityList cities={cities} isLoading={isLoading} />}
@@ -68,10 +66,8 @@ export default function App() {
               path="countries"
               element={<CountriesList isLoading={isLoading} cities={cities} />}
             />
-            <Route
-              path="form"
-              element={<CountriesList isLoading={isLoading} cities={cities} />}
-            />
+            {/* Form */}
+            <Route path="form" element={<Form />} />
           </Route>
 
           {/* 'Ce path qui veut dire que le route vas voir qu'il 
