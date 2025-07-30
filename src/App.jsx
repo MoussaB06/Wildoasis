@@ -12,32 +12,13 @@ import CountriesList from "./components/CountriesList";
 import City from "./components/City";
 import Form from "./components/Form";
 
+import { CitiesProvider, useCities } from "./Context/CitiesContext";
+
 /// Ce Component ce charge de montrer quel component apparait a l'ecran
 // selon le changement des Routes.
 export default function App() {
-  const [cities, setCities] = useState([]);
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  // On Mount mean onn the initial render of this component.
-  useEffect(() => {
-    async function fetchCities() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(`http://localhost:9000/cities`);
-        const data = await res.json();
-        setCities(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchCities();
-  }, []);
-
   return (
-    <>
+    <CitiesProvider>
       {/* <PagNav /> */}
       <BrowserRouter>
         <Routes>
@@ -53,19 +34,13 @@ export default function App() {
           <Route path="App" element={<AppLayout />}>
             {/* CityList */}
             <Route index element={<Navigate replace to="cities" />} />
-            <Route
-              path="cities"
-              element={<CityList cities={cities} isLoading={isLoading} />}
-            />
+            <Route path="cities" element={<CityList />} />
 
             {/* City */}
             <Route path="cities/:id" element={<City />} />
 
             {/* CountryList */}
-            <Route
-              path="countries"
-              element={<CountriesList isLoading={isLoading} cities={cities} />}
-            />
+            <Route path="countries" element={<CountriesList />} />
             {/* Form */}
             <Route path="form" element={<Form />} />
           </Route>
@@ -77,6 +52,6 @@ export default function App() {
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </CitiesProvider>
   );
 }
