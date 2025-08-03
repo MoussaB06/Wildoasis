@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
+
+import "leaflet/dist/leaflet.css";
 
 import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
@@ -12,7 +13,7 @@ import CountriesList from "./components/CountriesList";
 import City from "./components/City";
 import Form from "./components/Form";
 
-import { CitiesProvider, useCities } from "./Context/CitiesContext";
+import { CitiesProvider } from "./Context/CitiesContext";
 
 /// Ce Component ce charge de montrer quel component apparait a l'ecran
 // selon le changement des Routes.
