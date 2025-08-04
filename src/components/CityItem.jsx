@@ -24,6 +24,8 @@ export const countryCodes = {
   Germany: "DE",
   France: "FR",
   Algeria: "DZ",
+  Libya: "LY",
+  Nigeria: "NG",
 };
 
 function CityItem({ city }) {
@@ -40,12 +42,14 @@ function CityItem({ city }) {
         } `}
         to={`${id}?lat=${position.lat}&lng=${position.lng}`}
       >
-        <img
-          src={`https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`}
-          alt={`Flag of ${country}`}
-          width="20"
-          className={emojiClass}
-        />
+        {countryCode && (
+          <img
+            src={`https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`}
+            alt={`Flag of ${country}`}
+            width="20"
+            className={emojiClass}
+          />
+        )}
         <h3 className={name}>{cityName}</h3>
         <time className={daate}>({formatDate(date)})</time>
         <button className={deleteBtn}>&times;</button>

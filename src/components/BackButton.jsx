@@ -8,6 +8,7 @@ function BackButton() {
     <Button
       variation="back"
       onClick={(e) => {
+        // on a fait preventDefault pour qu'il ne puisse pas submit le form!
         e.preventDefault();
         navigate(-1);
       }}
