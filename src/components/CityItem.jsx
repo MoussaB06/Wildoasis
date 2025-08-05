@@ -29,10 +29,15 @@ export const countryCodes = {
 };
 
 function CityItem({ city }) {
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
 
   const { cityName, country, date, id, position } = city;
   const countryCode = countryCodes[country];
+
+  function handleClick(e) {
+    e.preventDefault();
+    deleteCity(id);
+  }
 
   return (
     <li>
@@ -52,7 +57,9 @@ function CityItem({ city }) {
         )}
         <h3 className={name}>{cityName}</h3>
         <time className={daate}>({formatDate(date)})</time>
-        <button className={deleteBtn}>&times;</button>
+        <button className={deleteBtn} onClick={handleClick}>
+          &times;
+        </button>
       </Link>
     </li>
   );

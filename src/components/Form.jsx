@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { CitiesProvider, useCities } from "../Context/CitiesContext";
+import { useCities } from "../Context/CitiesContext";
 
 import styles from "./Form.module.css";
 import Button from "./Button";

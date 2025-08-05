@@ -5,7 +5,7 @@ import { useCities } from "../Context/CitiesContext";
 import Spinner from "./Spinner";
 import BackButton from "./BackButton";
 
-// Fonction de formatage de date
+// Fonction de formatage de date.
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
